@@ -35,11 +35,11 @@ namespace MVC
             var myMessage = new SendGridMessage();
             myMessage.AddTo(message.Destination);
             myMessage.From = new EmailAddress(
-                "Heavensent.ATGS@gmail.com", "Heaven-sent Team");
+                "", "Heaven-sent Team");
             myMessage.Subject = message.Subject;
             myMessage.PlainTextContent = message.Body;
             myMessage.HtmlContent = message.Body;
-            var apiKey = "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";
+            var apiKey = "";
             var client = new SendGridClient(apiKey);
             if (client != null)
             {
