@@ -1,0 +1,8 @@
+﻿
+@model IEnumerable<MVC.Models.Category>
+
+<ul id="categories"
+    @foreach (var category in Model) {<p class="btn">
+        @Html.ActionLink(category.Name, "Browse", "Store", new { Category = category.Name }, null)
+    </p>
+</ul>}

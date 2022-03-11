@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Heaven-sent</h1>
+    <p class="lead">A new-gen ARPG game</p>
+    @*<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
+    <p>@Html.ActionLink("Read more", "About", "Home", new { @class = "btn btn-primary btn-lg" })</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>
+            Join to the battle of our future and freedom. Slay hellspawns and become the largest hero in history.
+            Register now!
+        </p>
+        @*<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Register now &raquo;</a></p>*@
+        <p>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn btn-default" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>News</h2>
+        <p>
+            Check the latest news from the world of Heaven-sent.
+        </p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Read more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Ranking</h2>
+        <p>
+            Rival with the other players and become the best one.
+        </p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Check ranking &raquo;</a></p>
+    </div>
+</div>

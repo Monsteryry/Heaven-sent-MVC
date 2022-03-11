@@ -1,0 +1,125 @@
+﻿@model MVC.Models.EmailForm
+@{
+    ViewBag.Title = "Support";
+}
+@*<h2>@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>*@
+<script>
+    function recaptchaCallback() {
+        $('#submitBtn').removeAttr('disabled');
+    };
+</script>
+<script src='https://www.google.com/recaptcha/api.js' type="text/javascript"></script>
+<div class="jumbotron">
+    <h1>Need Support? Contact us here.</h1>
+    <h2>Please fill out all of the fields below.</h2>
+    <fieldset>
+        @*
+            <legend>
+                Send Email
+            </legend>
+        *@
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+            <p>Category: </p>
+            @*<p>@Html.TextBoxFor(m => m.emailCategory)</p>*@
+            <p>
+                @Html.DropDownListFor(m => m.emailCategory, new List<SelectListItem>
+                {
+                     new SelectListItem { Text = "In Game"},
+                     new SelectListItem { Text = "Technical"},
+                     new SelectListItem { Text = "Website"},
+                     new SelectListItem { Text = "Crash Report"},
+                     new SelectListItem { Text = "Bug Report"},
+                     new SelectListItem { Text = "Character Stuck"}
+                }, new { style = "color:#232323;" })
+            </p>
+            <p>Username:</p>
+            <p>
+                @Html.TextBoxFor(m => m.emailUsername,
+           new { style = "color:#232323;" })
+            </p>
+            @Html.ValidationMessageFor(m => m.emailUsername)
+            <p>Email: </p>
+            <p>
+                @Html.TextBoxFor(m => m.emailSender,
+           new { style = "color:#232323;" })
+            </p>
+            @Html.ValidationMessageFor(m => m.emailSender)
+            @*<p>To: </p>*@
+            @*Model.emailRecipient = "heavensent.atgs@gmail.com";@*Model.Receipient;*@
+            @*<p>@Html.TextBoxFor(m => m.emailRecipient)</p>*@
+            @*odel.emailRecipient = "heavensent.atgs@gmail.com"*@
+            @Html.Hidden("emailRecipient", "heavensent.atgs@gmail.com");
+            <p>Subject: </p>
+            <p>
+                @Html.TextBoxFor(m => m.emailSubject,
+           new { style = "color:#232323;" })
+            </p>
+            @Html.ValidationMessageFor(m => m.emailSubject)
+            <p>Description: </p>
+            <p>
+                @Html.TextAreaFor(m => m.emailDescription,
+           new { style = "color:#232323;" })
+            </p>
+            @Html.ValidationMessageFor(m => m.emailDescription)
+            <input id="submitBtn" type="submit" value="Send" onclick="window.location.href(@Url.Action("MailSent", "Support")" disabled />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @using (Html.BeginForm("FormSubmit", "Captcha", FormMethod.Post))
+                    {
+                        <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="6Le3hzoaAAAAABcbRc_wmA7p1vrEzauZjmWkGVn7"></div>
+                    }
+                </div>
+            </div>
+        }
+    </fieldset>
+</div>
+@*
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <h4>Send your message.</h4>
+            <hr />
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.emailSender, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.emailSender, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.emailSender)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.emailRecipient, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.emailRecipient, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.emailRecipient)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.emailSubject, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.emailSubject, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.emailSubject)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.emailDescription, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(m => m.emailDescription, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.emailDescription)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-default" value="Send" />
+                </div>
+            </div>
+        }
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+    }
+*@
