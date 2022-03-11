@@ -58,16 +58,16 @@ namespace MVC
             //   consumerSecret: "");
 
             
-            app.UseSteamAuthentication("4D19B83634833EE931920AE59DB320C8");
+            app.UseSteamAuthentication("");
 
             app.UseFacebookAuthentication(
-               appId: "161085638883716",
-               appSecret: "14016cb8ba738e5aa4f4a2b7d0ecf6e9");
+               appId: "",
+               appSecret: "");
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "222353837336-7l5iknqs5l7qdf7n7dqtak8pac70ik1s.apps.googleusercontent.com",
-                ClientSecret = "XqvnRzzDG5wx9l56FFZqbNMT"
+                ClientId = "",
+                ClientSecret = ""
             });
         }
     }
